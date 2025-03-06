@@ -5,19 +5,19 @@ const sanitizeCityName = (cityName) => {
     }
 
 
-// let trimmedCity = cityName.includes('') ? trimmedCity.replaceAll('', '+') : trimmedCity; 
-// while (trimmedCity.includes(' ')) {
-//     trimmedCity = trimmedCity.replaceAll('++', '+'); 
-// }
+let trimmedCity = cityName.includes('') ? trimmedCity.replaceAll('', '+') : trimmedCity; 
+while (trimmedCity.includes(' ')) {
+    trimmedCity = trimmedCity.replaceAll('++', '+'); 
+}
 
-// return trimmedCity; 
-// }
+return trimmedCity; 
+}
 
-// //use API to retrieve weather data
-// const getData = async (cityName) => {
-//     const APIKEY = import.meta.env.VITE_API_KEY; 
-//     const sCity = sanitizeCity(cityName);
-//     const url = `https://api.openweathermap.org/data/2.5/weather?q=${sCity}&appid=${APIKEY}`; 
+//use API to retrieve weather data
+const getData = async (cityName) => {
+    const APIKEY = import.meta.env.VITE_API_KEY; 
+    const sCity = sanitizeCity(cityName);
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${sCity}&appid=${APIKEY}`; 
 
 //     try {
 //         const res = await fetch (url); 
