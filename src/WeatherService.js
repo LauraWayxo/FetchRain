@@ -19,21 +19,21 @@ const getData = async (cityName) => {
     const sCity = sanitizeCity(cityName);
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${sCity}&appid=${APIKEY}`; 
 
-//     try {
-//         const res = await fetch (url); 
-//         if (!res.ok) {
-//             if (res.status === 404) {
-//                 throw new Error (`Response status: ${res.status}. Assure the city name is spelled correctly`); 
-//             }
-//             if (res.status === 401) {
-//                 throw new Error (`Response status ${res.status}. Assure the API key is correct`); 
-//             }
-//         }
-//         const data = await res.json(); 
-//         return data; 
-//     } catch (error) {
-//         console.error(error.message); 
-//     }
-// }
+    try {
+        const res = await fetch (url); 
+        if (!res.ok) {
+            if (res.status === 404) {
+                throw new Error (`Response status: ${res.status}. Assure the city name is spelled correctly`); 
+            }
+            if (res.status === 401) {
+                throw new Error (`Response status ${res.status}. Assure the API key is correct`); 
+            }
+        }
+        const data = await res.json(); 
+        return data; 
+    } catch (error) {
+        console.error(error.message); 
+    }
+}
 
-// export getData(); 
+export getData(); 
