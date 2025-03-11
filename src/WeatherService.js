@@ -6,7 +6,7 @@ const sanitizeCityName = (cityName) => {
 
 
 let trimmedCity = cityName.includes('') ? trimmedCity.replaceAll('', '+') : trimmedCity; 
-while (trimmedCity.includes(' ')) {
+while (trimmedCity.includes('++')) {
     trimmedCity = trimmedCity.replaceAll('++', '+'); 
 }
 
@@ -16,7 +16,7 @@ return trimmedCity;
 //use API to retrieve weather data
 const getData = async (cityName) => {
     const APIKEY = import.meta.env.VITE_API_KEY; 
-    const sCity = sanitizeCity(cityName);
+    const sCity = sanitizeCityName(cityName);
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${sCity}&appid=${APIKEY}`; 
 
     try {
@@ -36,4 +36,4 @@ const getData = async (cityName) => {
     }
 }
 
-export getData(); 
+export { getData }; 
