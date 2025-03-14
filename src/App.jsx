@@ -2,7 +2,6 @@ import  FetchRainLogo2 from './assets/FetchRainLogo2.png';
 import { getData } from './WeatherService';
 import { useEffect, useState } from 'react';
 import './App.css';
-{/* import weatherInstructions from './components/RenderInstructions';*/}
 
 
 
@@ -13,14 +12,15 @@ const [sCity, setCity]  = useState(userInput); //sCity = userInput for API call
 const [weatherData, setWeatherData] = useState([]); //store weather data from API
 const [error, setError] = useState(null); //tracks and display error message
 
-const fetchData = async(sCity) => {
+const fetchData = async(cityName) => {
   try {
-    const data = await getData(sCity); //retrieve data from API
+    const data = await getData(cityName); //retrieve data from API
+    setCity(cityName); //set city name for API call
     setWeatherData(data); 
     console.log(data);
   }  catch (error) {
   console.error(error.message); 
-  setError('Weather data delay at this time. Please try again later or contact your API Key admin');
+  setError('Weather data delay at this time. Please try again later');
 }
   }
 
@@ -51,9 +51,8 @@ return (
     <div>
       <h3>City: {weatherData?.name}</h3>
       <p>Temperature: {weatherData?.main?.temp} °C</p>
-      <p>Feels Like: {weatherData?.main?.feels_like} °C</p> 
-      {/* <p>Humidity: {weatherData.main.humidity}</p> */}
-      {/*<p>Weather: {weatherData?.weather[0]?.description}</p>*/}
+      <p>feeling more like... {weatherData?.main?.feels_like} °C outside</p> 
+      <p>your hair will be affected by...{weatherData?.main?.humidity}% humidity levels</p>
     </div> 
       )
 }

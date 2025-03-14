@@ -1,16 +1,16 @@
 //User adds extra spacing in the city name, this function will remove the extra spacing
 const sanitizeCityName = (cityName) => {
-    if (!cityName.includes('')) {
-        return cityName; 
-    }
+    // if (!cityName.includes('')) {
+    //     return cityName; 
+    // }
 
 
-let trimmedCity = cityName
+let trimmedCity = cityName.trim();
 if (cityName.includes('')) {
-    trimmedCity = trimmedCity.replaceAll('', '+') }
+    trimmedCity = trimmedCity.replaceAll(' ', '+') }
 
 while (trimmedCity.includes('++')) {
-    trimmedCity = trimmedCity.replaceAll('++', '+'); 
+    trimmedCity = trimmedCity.replaceAll('++', '+'); //prevent double +
 }
 
 return trimmedCity; 
@@ -18,9 +18,9 @@ return trimmedCity;
 
 //use API to retrieve weather data
 const getData = async (cityName) => {
-    const APIKEY = import.meta.env.VITE_API_KEY; 
-    const sCity = sanitizeCityName(cityName);
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIKEY}`; 
+    const apiKEY = import.meta.env.VITE_API_KEY; 
+    const sCity = sanitizeCityName(cityName); //use properly formatted city name for API call 
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${sCity}&appid=${apiKEY}`; 
 
     try {
         const res = await fetch (url); 
@@ -35,7 +35,8 @@ const getData = async (cityName) => {
         const data = await res.json(); 
         return data; 
     } catch (error) {
-        console.error(error.message); 
+        console.error(error.message);
+        throw error; //need fetchData in App.jsx to also catch this error 
     }
 }
 
