@@ -6,15 +6,16 @@ import './App.css';
 
 
 
+
 function App() {
 const [userInput, setUserInput] = useState(''); //user input for city name
-const [sCity, setCity]  = useState(userInput); //setCity to userInput for API call
+const [sCity, setCity]  = useState(userInput); //sCity = userInput for API call
 const [weatherData, setWeatherData] = useState([]); //store weather data from API
 const [error, setError] = useState(null); //tracks and display error message
 
-const fetchData = async(city) => {
+const fetchData = async(sCity) => {
   try {
-    const data = await getData(city); //retrieve data from API
+    const data = await getData(sCity); //retrieve data from API
     setWeatherData(data); 
     console.log(data);
   }  catch (error) {
