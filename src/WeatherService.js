@@ -5,7 +5,10 @@ const sanitizeCityName = (cityName) => {
     }
 
 
-let trimmedCity = cityName.includes('') ? trimmedCity.replaceAll('', '+') : trimmedCity; 
+let trimmedCity = cityName
+if (cityName.includes('')) {
+    trimmedCity = trimmedCity.replaceAll('', '+') }
+
 while (trimmedCity.includes('++')) {
     trimmedCity = trimmedCity.replaceAll('++', '+'); 
 }
@@ -17,7 +20,7 @@ return trimmedCity;
 const getData = async (cityName) => {
     const APIKEY = import.meta.env.VITE_API_KEY; 
     const sCity = sanitizeCityName(cityName);
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${sCity}&appid=${APIKEY}`; 
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIKEY}`; 
 
     try {
         const res = await fetch (url); 
