@@ -8,7 +8,7 @@ import './App.css';
 
 function App() {
 const [userInput, setUserInput] = useState(''); //user input for city name
-const [sCity, setCity]  = useState(userInput); 
+const [sCity, setCity]  = useState(userInput); //setCity to userInput for API call
 const [weatherData, setWeatherData] = useState([]); //store weather data from API
 const [error, setError] = useState(null); //tracks and display error message
 
